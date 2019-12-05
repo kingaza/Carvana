@@ -123,7 +123,7 @@ if __name__ == '__main__':
                                    factor=0.2,
                                    patience=5,
                                    verbose=1,
-                                   epsilon=1e-4,
+                                   min_delta=1e-4,
                                    mode='max'),
                  ModelCheckpoint(monitor='val_dice_coef',
                                  filepath='model_weights.hdf5',
@@ -133,7 +133,7 @@ if __name__ == '__main__':
     model.fit_generator(generator=train_generator(ids_train),
                         steps_per_epoch=np.ceil(float(len(ids_train)) / float(BATCH_SIZE)),
                         epochs=100,
-                        verbose=2,
+                        verbose=1,
                         callbacks=callbacks,
                         validation_data=valid_generator(ids_valid),
                         validation_steps=np.ceil(float(len(ids_valid)) / float(BATCH_SIZE)))
